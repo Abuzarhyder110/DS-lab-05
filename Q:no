@@ -1,0 +1,46 @@
+include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* next;
+};
+
+int countElements(Node* head) {
+    int count = 0;
+    Node* current = head;
+    while (current != nullptr) {
+        count++;
+        current = current->next;
+    }
+    return count;
+}
+
+void append(Node*& head, int new_data) {
+    Node* new_node = new Node();
+    new_node->data = new_data;
+    new_node->next = nullptr;
+    
+    if (head == nullptr) {
+        head = new_node;
+        return;
+    }
+    
+    Node* last = head;
+    while (last->next != nullptr) {
+        last = last->next;
+    }
+    last->next = new_node;
+}
+
+int main() {
+    Node* head = nullptr;
+    
+    append(head, 10);
+    append(head, 20);
+    append(head, 30);
+        int NUM = countElements(head);
+    cout << "Number of elements in the linked list: " << NUM << endl;
+    
+    return 0;
+}
